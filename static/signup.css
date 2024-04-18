@@ -44,7 +44,7 @@
     }
 
     button[type="submit"] {
-      background-color: #15b9b6;
+      background-color: #acabaa;
       color: white;
       padding: 10px 20px;
       border: none;
@@ -97,7 +97,8 @@
     }
     
     .account-message a:hover {
-      color: #0056b3;
+   
+    color: #acabaa;
     }
  
 

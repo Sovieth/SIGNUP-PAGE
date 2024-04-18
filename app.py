@@ -40,17 +40,32 @@ def login():
        
      
         # adding user to the database
-        user={"Email Address:":Email_Address, "password":password}
+        user={" Email_Address": Email_Address, "password":password}
        
         db.user.find_one(user)
-        return render_template()
-
-        
+         
     return render_template("landing.html")
-# @app.route('/landing', methods=['GET']) 
-# def index(): 
-# 	## Display the HTML form template 
-# 	return render_template('landing.html') 
+
+@app.route('/landing', methods=['GET']) 
+def index(): 
+	## Display the HTML form template 
+	return render_template('landing.html')
+
+# @app.route ("/login", methods=["Post"])
+# def login():
+#     if request.method == "Post":
+#         # declare variables
+#         name=request.form["name"]
+#         time=request.form["time"]
+#         action=request.form["action"]
+       
+     
+#         # adding user to the database
+#         user={" name":name, "time":time, "action":action}
+       
+#         db.user.find_one(user)
+         
+#     return render_template("landing.html")
         
 if __name__ == "__main__":
     debug=True

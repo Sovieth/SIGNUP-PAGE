@@ -30,23 +30,21 @@
       </table>
 
       <h2>Add Booking</h2>
-      <form action="/booking" id="booking-form" method="POST">
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name" required>
-      
-        <label for="date">Date:</label>
-        <input type="date" id="date" name="date" required>
-      
-        <label for="time">Time:</label>
-        <input type="time" id="time" name="time" required>
-      
-        <label for="description">Description:</label>
-        <input type="text" id="description" name="description" maxlength="30" required>
-      
-        <button type="submit">Add Booking</button>
+      <form action="/booking/add" id="booking-form" method="POST">
+          <label for="name">Name:</label>
+          <input type="text" id="name" name="name" required>
+        
+          <label for="date">Date:</label>
+          <input type="date" id="date" name="date" required>
+        
+          <label for="time">Time:</label>
+          <input type="time" id="time" name="time" required>
+        
+          <label for="description">Description:</label>
+          <input type="text" id="description" name="description" maxlength="30" required>
+        
+          <button type="submit">Add Booking</button>
       </form>
-    </div>
-  </div>
 
   <script>
     // Get references to the table body and the form

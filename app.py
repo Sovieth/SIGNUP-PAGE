@@ -52,19 +52,36 @@ def get_booking():
     booking = list(db.Bookings.find())
     return render_template("booking.html", booking=booking)
 
-@app.route("/booking/add", methods=["POST", "GET"])  # Changed to /booking/add for clarity
+from flask import request, redirect, url_for, render_template
+
+@app.route("/booking/add", methods=["POST", "GET"])  
 def add_booking():
     if request.method == "POST":
+        name = request.form["name"]
+        date = request.form["date"]
+        time = request.form["time"]
+        description = request.form["description"]
+
         booking = {
-            "name": request.form["name"],
-            "date": request.form["date"],
-            "time": request.form["time"],
-            "action": request.form["action"],
-            "description": request.form["description"]
+            "name": name,
+            "date": date,
+            "time": time,
+            "description": description
         }
+        
         db.Bookings.insert_one(booking)
-        return redirect(url_for('get_booking'))
-    return render_template("add_booking.html")  # Assuming you have a separate template for adding bookings
+        return redirect(url_for('Mybookings'))
+    return render_template("booking_form.html")
+
+
+@app.route("/Mybookings", methods=["POST", "GET"])
+def Mybookings():
+    bookings = db.Bookings.find()  # Retrieve all documents from the collection
+
+    return render_template("Mybookings.html", bookings=bookings)
+
+
+
 
 @app.route("/family", methods=["GET", "POST"])
 def family():

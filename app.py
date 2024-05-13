@@ -69,17 +69,17 @@ def add_booking():
 @app.route("/family", methods=["GET", "POST"])
 def family():
     # Code for the family route
-    return "Family route"
+    return render_template ("family.html")
 
 @app.route("/wedding", methods=["GET", "POST"])
 def wedding():
     # Code for the wedding route
-    return "Wedding route"
+    return render_template ("Wedding.html")
 
 @app.route("/newborn", methods=["GET", "POST"])
 def newborn():
     # Code for the newborn route
-    return "Newborn route"
+    return render_template ("newborn.html")
 
 if __name__ == '__main__':
     app.run(debug=True)

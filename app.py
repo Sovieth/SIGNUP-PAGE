@@ -1,73 +1,85 @@
-from flask import Flask ,request
+from flask import Flask
+from flask import request
 from flask_pymongo import PyMongo
 from flask import render_template, redirect, url_for
 
-app= Flask(__name__,static_url_path='/static')
+app = Flask(__name__, static_url_path='/static')
 app.config["MONGO_URI"] = "mongodb://localhost:27017/Customer"
-Mongo = PyMongo(app)
-db = Mongo.db
+mongo = PyMongo(app)
+db = mongo.db
 
-@app.route('/', methods=['GET']) 
+@app.route('/') 
 def index(): 
-	## Display the HTML form template 
-	return render_template('signup.html') 
+    # Display the landing page
+    return render_template('landing.html') 
 
-@app.route ("/signup", methods=["POST", "GET"])
+# Signup page
+@app.route("/signup", methods=["POST", "GET"])
 def signup():
-  
     if request.method == "POST":
+        name = request.form["name"]
+        surname = request.form["surname"]
+        email = request.form["email"]
+        password = request.form["password"]
 
-        # declare variables
-        name=request.form["name"]
-        surname=request.form["surname"]
-        email=request.form["email"]
-        password=request.form["password"]
-    
-    
-        # adding user to the database
-        user={"name":name, "surname":surname, "email":email, "password":password}
+        # Check if user already exists
+        if db.user.find_one({"email": email}):
+            return "User already exists!"
+
+        # Adding user to the database
+        user = {"name": name, "surname": surname, "email": email, "password": password}
         db.user.insert_one(user)
-             
-        return render_template('login.html') 
-    return 0    
-        
-@app.route ("/login", methods=["Post"])
+        return redirect(url_for('login'))
+    return render_template('signup.html')
+
+# Login
+@app.route("/login", methods=["GET", "POST"])
 def login():
-    if request.method == "Post":
-        # declare variables
-        Email_Address=request.form["Email Address:"]
-        password=request.form["password"]
-       
-     
-        # adding user to the database
-        user={" Email_Address": Email_Address, "password":password}
-       
-        db.user.find_one(user)
-         
-    return render_template("landing.html")
+    if request.method == "POST":
+        email = request.form["email"]
+        password = request.form["password"]
 
-@app.route('/landing', methods=['GET']) 
-def index(): 
-	## Display the HTML form template 
-	return render_template('landing.html')
+        # Fetch user from the database
+        user = db.user.find_one({"email": email})
+        if user and user["password"] == password:
+            return redirect(url_for("get_booking"))
+        else:
+            return "Invalid credentials"
+    return render_template("login.html")
 
-# @app.route ("/login", methods=["Post"])
-# def login():
-#     if request.method == "Post":
-#         # declare variables
-#         name=request.form["name"]
-#         time=request.form["time"]
-#         action=request.form["action"]
-       
-     
-#         # adding user to the database
-#         user={" name":name, "time":time, "action":action}
-       
-#         db.user.find_one(user)
-         
-#     return render_template("landing.html")
-        
-if __name__ == "__main__":
-    debug=True
-    app.run()
- 
+@app.route("/booking", methods=["GET"])
+def get_booking():
+    booking = list(db.Bookings.find())
+    return render_template("booking.html", booking=booking)
+
+@app.route("/booking/add", methods=["POST", "GET"])  # Changed to /booking/add for clarity
+def add_booking():
+    if request.method == "POST":
+        booking = {
+            "name": request.form["name"],
+            "date": request.form["date"],
+            "time": request.form["time"],
+            "action": request.form["action"],
+            "description": request.form["description"]
+        }
+        db.Bookings.insert_one(booking)
+        return redirect(url_for('get_booking'))
+    return render_template("add_booking.html")  # Assuming you have a separate template for adding bookings
+
+@app.route("/family", methods=["GET", "POST"])
+def family():
+    # Code for the family route
+    return "Family route"
+
+@app.route("/wedding", methods=["GET", "POST"])
+def wedding():
+    # Code for the wedding route
+    return "Wedding route"
+
+@app.route("/newborn", methods=["GET", "POST"])
+def newborn():
+    # Code for the newborn route
+    return "Newborn route"
+
+if __name__ == '__main__':
+    app.run(debug=True)

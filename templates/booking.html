@@ -1,9 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Booking Page</title>
-  <link rel="stylesheet" type="text/css" href="/static/booking.css">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Booking</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/static/booking.css">
 </head>
+
 <body>
   <div class="outer-container">
     <div class="booking-container">
@@ -15,6 +20,7 @@
             <th>Name</th>
             <th>Date</th>
             <th>Time</th>
+            <th>Description</th>
             <th>Actions</th>
           </tr>
         </thead>
@@ -24,16 +30,19 @@
       </table>
 
       <h2>Add Booking</h2>
-      <form id="booking-form">
+      <form action="/booking" id="booking-form" method="POST">
         <label for="name">Name:</label>
         <input type="text" id="name" name="name" required>
-
+      
         <label for="date">Date:</label>
         <input type="date" id="date" name="date" required>
-
-        <label for "time">Time:</label>
+      
+        <label for="time">Time:</label>
         <input type="time" id="time" name="time" required>
-
+      
+        <label for="description">Description:</label>
+        <input type="text" id="description" name="description" maxlength="30" required>
+      
         <button type="submit">Add Booking</button>
       </form>
     </div>
@@ -51,12 +60,13 @@
     function renderBookings() {
       tableBody.innerHTML = '';
 
-      bookings.forEach((booking, index) => {
+      bookings.forEach((booking, index) = {
         const row = document.createElement('tr');
         row.innerHTML = `
           <td>${booking.name}</td>
           <td>${booking.date}</td>
           <td>${booking.time}</td>
+          <td>${booking.description}</td>
           <td>
             <button onclick="updateBooking(${index})">Update</button>
             <button onclick="deleteBooking(${index})">Delete</button>
@@ -73,8 +83,9 @@
       const name = document.getElementById('name').value;
       const date = document.getElementById('date').value;
       const time = document.getElementById('time').value;
+      const description = document.getElementById('description').value;
 
-      const newBooking = { name, date, time };
+      const newBooking = { name, date, time, description };
       bookings.push(newBooking);
       renderBookings();
 
@@ -88,9 +99,10 @@
       const name = prompt('Update name:', booking.name);
       const date = prompt('Update date:', booking.date);
       const time = prompt('Update time:', booking.time);
+      const description = prompt('Update description:', booking.description);
 
-      if (name && date && time) {
-        bookings[index] = { name, date, time };
+      if (name && date && time && description) {
+        bookings[index] = { name, date, time, description };
         renderBookings();
       }
     }

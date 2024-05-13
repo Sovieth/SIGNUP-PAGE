@@ -1,0 +1,71 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+nav {
+    background-color: #333;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+nav ul li {
+    float: left;
+}
+
+nav ul li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+nav ul li a:hover {
+    background-color: #111;
+}
+
+.content {
+    padding: 20px;
+}
+.description{
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+    font-size: large;
+    align-content: center;
+    margin-left: 200px;
+}
+
+.services-container {
+    display: flex;
+    justify-content: space-around; /* Optional: adjust as needed */
+    align-items: center; /* Optional: adjust as needed */
+    flex-wrap: nowrap; /* Ensures services stay in a single row */
+}
+
+.service {
+    width: 400px;
+    height: 400px;
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.service img {
+    width: 70%;
+    border-radius: 5px 5px 0 0;
+}
+
+.service h2 {
+    color: #333;
+}
+
+.service p {
+    color: #666;
+}

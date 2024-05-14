@@ -1,6 +1,7 @@
 from flask import Flask
 from flask import request
 from flask_pymongo import PyMongo
+from bson import *
 from flask import render_template, redirect, url_for
 
 app = Flask(__name__, static_url_path='/static')
@@ -97,6 +98,13 @@ def wedding():
 def newborn():
     # Code for the newborn route
     return render_template ("newborn.html")
+
+
+
+@app.route('/delete_/<card_id>', methods=['POST'])
+def delete_booking(card_id):
+    db.Bookings.delete_one({'booking_id': ObjectId(card_id)})
+    return redirect(url_for('Mybookings'))
 
 if __name__ == '__main__':
     app.run(debug=True)

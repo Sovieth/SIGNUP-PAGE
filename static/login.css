@@ -1,9 +1,13 @@
 
     body {
       font-family: Arial, sans-serif;
-      background-color: #f2f2f2;
+      line-height: 1.6;
+      background-image: url(/static/car1.jpeg);
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
     }
-
     .container {
       max-width: 400px;
       margin: 0 auto;

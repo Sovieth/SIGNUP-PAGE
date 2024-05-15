@@ -71,7 +71,12 @@ def add_booking():
         }
         
         db.Bookings.insert_one(booking)
-        return redirect(url_for('Mybookings'))
+        
+        Booking = []
+
+        for i in db.Bookings.find():
+            Booking.append(i)
+        return render_template('Mybookings.html', bookings=Booking)
     return render_template("booking_form.html")
 
 
@@ -101,21 +106,30 @@ def newborn():
 
 # Booking
 
-@app.route("/Booking", methods=["POST", "GET"] )
+@app.route("/booking", methods=["POST", "GET"] )
 def getBooking():
-     if request.method == 'GET':
+     if request.method == 'POST':
           Booking = []
 
-          for i in db.booking.find():
+          for i in db.bookings.find():
+            Booking.append(i)
+            print(Booking)
+            
+     return render_template("Mybookings.html" , bookings=Booking )
+
+
+@app.route('/delete', methods=['POST'])
+def delete_booking():
+    if request.method == "POST":
+        id = request.form["id"]
+        db.Bookings.delete_one({'_id': ObjectId(id)})
+        
+        Booking = []
+
+        for i in db.Bookings.find():
             Booking.append(i)
             
-     return render_template("bookings.html" , Booking=Booking )
-
-
-@app.route('/delete_/<card_id>', methods=['POST'])
-def delete_booking(card_id):
-    db.Bookings.delete_one({'container_id': ObjectId(card_id)})
-    return redirect(url_for('Mybookings'))
+    return render_template('Mybookings.html', bookings=Booking)
 
 
 

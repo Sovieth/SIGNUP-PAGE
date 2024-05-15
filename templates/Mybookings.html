@@ -14,13 +14,15 @@
                 <p>Date: {{ booking.date }}</p>
                 <p>Time: {{ booking.time }}</p>
                 <p>Description: {{ booking.description }}</p>
+                <p>ID: {{ booking._id }}</p>
+                <form action="/delete", method="POST">
+                    <input type="hidden" id="id" name="id" value={{booking._id}}>
+                    <button type="submit">Delete</button>
+                </form>
             </div>
+          
             {% endfor %}
-            <form action="{{ url_for('delete_booking', card_id=booking._id) }}" method="post">
             
-            </form>
-            </form>
-            <button type="submit">Delete</button>
         </div>
     </div>
     

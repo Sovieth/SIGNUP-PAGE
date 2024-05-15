@@ -79,7 +79,7 @@ def add_booking():
 def Mybookings():
     bookings = db.Bookings.find()  # Retrieve all documents from the collection
 
-    return render_template("Mybookings.html", bookings=bookings)
+    return render_template("Mybookings.html", booking=bookings)
 
 
 
@@ -99,12 +99,25 @@ def newborn():
     # Code for the newborn route
     return render_template ("newborn.html")
 
+# Booking
+
+@app.route("/Booking", methods=["POST", "GET"] )
+def getBooking():
+     if request.method == 'GET':
+          Booking = []
+
+          for i in db.booking.find():
+            Booking.append(i)
+            
+     return render_template("bookings.html" , Booking=Booking )
 
 
 @app.route('/delete_/<card_id>', methods=['POST'])
 def delete_booking(card_id):
-    db.Bookings.delete_one({'booking_id': ObjectId(card_id)})
+    db.Bookings.delete_one({'container_id': ObjectId(card_id)})
     return redirect(url_for('Mybookings'))
+
+
 
 if __name__ == '__main__':
     app.run(debug=True)

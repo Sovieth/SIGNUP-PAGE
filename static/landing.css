@@ -201,5 +201,12 @@ body, h1, h2, h3, p, ul, li {
     position: relative;
     z-index: 1;
   }
+  .A2{
+    margin-top: -40px;
+  }
+  .H2{
+   margin-bottom: -40px;
+  }
+ 
  
  

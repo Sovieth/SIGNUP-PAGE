@@ -6,7 +6,11 @@
 </head>
 <body>
     <div class="container">
-        <h1>My Bookings</h1>
+        <nav>
+            <ul>
+                <li><a href="#"><span class="highlight">My Bookings</span></a></li>
+            </ul>
+          </nav>
         <div class="booking-list">
             {% for booking in bookings %}
             <div class="booking">
@@ -14,7 +18,7 @@
                 <p>Date: {{ booking.date }}</p>
                 <p>Time: {{ booking.time }}</p>
                 <p>Description: {{ booking.description }}</p>
-                <p>ID: {{ booking._id }}</p>
+                <p>Id: {{ booking._id }}</p>
                 <form action="/delete", method="POST">
                     <input type="hidden" id="id" name="id" value={{booking._id}}>
                     <button type="submit">Delete</button>

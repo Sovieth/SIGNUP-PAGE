@@ -15,6 +15,8 @@ body {
     padding: 20px;
     background-color: #f2f2f2;
     border-radius: 5px;
+    border-radius: 20px;
+    margin-top: 40px;
   }
   
   h1 {
@@ -39,3 +41,26 @@ body {
   .booking p {
     margin: 10px 0;
   }
+  nav {
+    background-color: #acabaa;
+    color: #fff;
+  }
+  
+  nav ul {
+    display: flex;
+    justify-content: center;
+    list-style-type: none;
+    margin: 10px;
+    padding: 10px;
+    margin-bottom: 30px;
+    margin-top: auto;
+
+  }
+  
+  nav ul li a {
+    display: block;
+    padding: 10px 15px;
+    text-decoration: none;
+    color: #fff;
+  }
+  

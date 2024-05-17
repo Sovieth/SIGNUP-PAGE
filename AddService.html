@@ -18,10 +18,12 @@
             <h1>Add Item</h1>
             <form action="/AddItem1" method="post">
                 <div class="form-group">
-                    <input type="text" typ="Category" placeholder="Category" required>
-                    <input type="email" name="" id="email" placeholder="Email" required>
-                    <input type="number" name="Amount" placeholder="Amount" required><br>
-                    <textarea class="form-control" id="Description" placeholder="Brief Description of your piece" name="Description"></textarea>
+                    <label for="price">Category:</label>
+                <input type="text" id="price" name="price" required><br><br>
+                    <label for="price">Price:</label>
+                    <input type="text" id="price" name="price" required><br><br>
+                    <label for="price">Description:</label>
+                    <textarea class="form-control" id="Description" placeholder="" name="Description"></textarea>
                     <label for="image">Choose Image:</label>
                     <input type="file" id="image" name="image" accept="image/*" required>
                     <button type="submit">Add</button>

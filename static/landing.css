@@ -33,6 +33,7 @@
   color: #fff;
   text-decoration: none;
   padding: 5px 10px;
+  width: 50px;
 }
  
  /* Reset some default styles */
@@ -140,6 +141,8 @@ body, h1, h2, h3, p, ul, li {
     overflow: hidden;
     background-color: #acabaa;
     position: relative;
+    width: 200px;
+    
   }
   
   .topnav #myLinks {
@@ -154,13 +157,13 @@ body, h1, h2, h3, p, ul, li {
     display: block;
   }
   
-  .topnav a.icon {
+  /* .topnav a.icon {
     background: rgb(56, 45, 61);
     display: block;
     position: absolute;
     right: 0;
     top: 0;
-  }
+  } */
   
   .topnav a:hover {
     background-color: #ddd;
@@ -201,12 +204,13 @@ body, h1, h2, h3, p, ul, li {
     position: relative;
     z-index: 1;
   }
-  .A2{
+  /* .A2{
     margin-top: -40px;
   }
   .H2{
    margin-bottom: -40px;
   }
  
- 
+  */
+  
  

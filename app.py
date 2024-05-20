@@ -48,6 +48,7 @@ def login():
             return "Invalid credentials"
     return render_template("login.html")
 
+# Add booking
 @app.route("/booking", methods=["GET"])
 def get_booking():
     booking = list(db.Bookings.find())
@@ -87,7 +88,7 @@ def Mybookings():
     return render_template("Mybookings.html", booking=bookings)
 
 
-
+# services
 
 @app.route("/family", methods=["GET", "POST"])
 def family():
@@ -131,7 +132,83 @@ def delete_booking():
             
     return render_template('Mybookings.html', bookings=Booking)
 
+@app.route('/Edit_Service', methods=['POST'])
+def edit_booking():
+    if request.method == "POST":
+        id = request.form["id"]
+        name = request.form["name"]
+        date = request.form["date"]
+        time = request.form["time"]
+
+        return render_template('EditService.html', id=id,name=name, date=date, time=time)
+
+@app.route('/Edit_Service1', methods=['POST'])
+def edit1_booking():
+    if request.method == "POST":
+        id = request.form["id"]
+        name = request.form["name"]
+        date = request.form["date"]
+        time = request.form["time"]
+        db.Bookings.update_one( { "_id":  ObjectId(id)}, { '$set': { "name": name, "date":date, "time":time} } ) 
+        Booking = []
+
+        for i in db.Bookings.find():
+            Booking.append(i)
+            
+    return render_template('Mybookings.html', bookings=Booking)
 
 
+# SignupAdmin page
+@app.route("/SignupAdmin", methods=["POST", "GET"])
+def SignupAdmin():
+    if request.method == "POST":
+        name = request.form["name"]
+        surname = request.form["surname"]
+        email = request.form["email"]
+        password = request.form["password"]
+
+        # Check if user already exists
+        if db.user.find_one({"email": email}):
+            return "User already exists!"
+
+        # Adding user to the database
+        user = {"name": name, "surname": surname, "email": email, "password": password}
+        db.user.insert_one(user)
+        return redirect(url_for('login'))
+    return render_template('SignupAdmin.html')
+
+# LoginAdmin
+@app.route("/LoginAdmin", methods=["GET", "POST"])
+def LoginAdmin():
+    if request.method == "POST":
+        email = request.form["email"]
+        password = request.form["password"]
+
+        # Fetch user from the database
+        user = db.user.find_one({"email": email})
+        if user and user["password"] == password:
+            return redirect(url_for("AddService."))
+        else:
+            return "Invalid credentials"
+    return render_template("LoginAdmin.html")
+
+@app.route("/AddService", methods=["GET"])
+def get_AddService():
+    services = list(db.AddService.find())
+    return render_template("AddService.html", services=services)
+
+
+@app.route('/AddItem1', methods=['POST'])
+def add_item():
+    category = request.form['category']
+    price = request.form['price']
+    description = request.form['Description']
+    image = request.files['image']
+    
+    # Perform further processing or save the data to a database
+    # For example, you can save the image to a specific location
+    
+    return redirect(url_for('get_AddService'))
+   
 if __name__ == '__main__':
     app.run(debug=True)

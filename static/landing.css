@@ -226,5 +226,119 @@ body, h1, h2, h3, p, ul, li {
 
   
 }
+.dropdown {
+  display: inline-block;
+}
 
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
 
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.dropdown-content a:hover {
+  background-color: #f1f1f1;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+.buttons {
+  width: 80px;
+  background-color: #141212;
+  padding: 10px;
+  display: inline-block;
+  border-radius: 15px;
+  position: absolute;
+  text-align: center;
+  right: 20px; /* Adjusted margin-left to right */
+}
+.menu-container {
+  position: relative;
+}
+
+.menu-btn {
+  cursor: pointer;
+  height: 50px;
+  width: 100px;
+}
+
+.menu-btn span {
+  display: block;
+  width: 80px;
+  height: 10px;
+  background-color: #4439e3d5;
+  margin-bottom: -.5px; /* This value doesn't seem necessary */
+  transition: transform 0.3s, opacity 0.3s;
+  border-radius: 20%;
+}
+
+.menu-btn span:last-child {
+  margin-top: 8px; /* Adjusted margin-top */
+}
+
+.menu-btn:hover span {
+  background-color: hsl(0, 31%, 95%);
+}
+
+.menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: #ffffff82;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  padding: 10px 0;
+  margin-top: 5px;
+  margin-bottom: 80px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+}
+
+.menu li {
+  list-style: none;
+}
+
+.menu li a {
+  display: block;
+  padding: 10px 20px;
+  color: #333;
+  text-decoration: none;
+}
+
+.menu li a:hover {
+  background-color: #f0f0f0;
+}
+
+.hidden {
+  display: none;
+}
+
+#menu-toggle:checked + .menu-btn span:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+
+#menu-toggle:checked + .menu-btn span:nth-child(2) {
+  opacity: 0;
+}
+
+#menu-toggle:checked + .menu-btn span:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+#menu-toggle:checked ~ .menu {
+  opacity: 1;
+  pointer-events: auto;
+}

@@ -16,20 +16,25 @@
 
         <div class="form">
             <h1>Add Item</h1>
-            <form action="/AddItem1" method="post">
+            <form action="/AddService" method="post">
                 <div class="form-group">
-                    <label for="price">Category:</label>
-                <input type="text" id="price" name="price" required><br><br>
+                    <label for="cate">Category:</label>
+                    <input type="text" id="category" name="category" required><br>
+
                     <label for="price">Price:</label>
-                    <input type="text" id="price" name="price" required><br><br>
-                    <label for="price">Description:</label>
-                    <textarea class="form-control" id="Description" placeholder="" name="Description"></textarea>
+                    <input type="text" id="price" name="price" required><br>
+                    
+                    <label for="description">Description:</label>
+                    <textarea class="form-control" id="description" name="description" placeholder=""></textarea><br>
+                    
                     <label for="image">Choose Image:</label>
-                    <input type="file" id="image" name="image" accept="image/*" required>
+                    <input type="file" id="image" name="image" accept="image/*" required><br>
+                    
                     <button type="submit">Add</button>
                 </div>
             </form>
         </div>
+        
     </div>
 
     <!-- Rest of your HTML content -->

@@ -6,11 +6,7 @@
 </head>
 <body>
     <div class="container">
-        <nav>
-            <ul>
-                <li><a href="#"><span class="highlight">My Bookings</span></a></li>
-            </ul>
-          </nav>
+                <h2>My Bookings</h2>
         <div class="booking-list">
             {% for booking in bookings %}
             <div class="booking">
@@ -27,7 +23,7 @@
                     <input type="hidden" id="name" name="name" value={{booking._name}}>
                     <input type="hidden" id="date" name="date" value={{booking._date}}>
                     <input type="hidden" id="time" name="time" value={{booking._time}}>
-                    <button type="submit">Update</button>
+                    <button type="submit1">Update</button>
                 </form>
             </div>
           

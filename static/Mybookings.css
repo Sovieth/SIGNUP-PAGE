@@ -1,7 +1,7 @@
 body {
   font-family: Arial, sans-serif;
   line-height: 1.6;
-  background-image: url(/static/car1.jpeg);
+  background-image: url(/static/pic2.jpeg);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -13,10 +13,12 @@ body {
     max-width: 800px;
     margin: 0 auto;
     padding: 20px;
-    background-color: #f2f2f2;
+    background-color: #d0b9a3da;
     border-radius: 5px;
     border-radius: 20px;
     margin-top: 40px;
+    width: 3000px;
+    
   }
   
   h1 {
@@ -30,8 +32,9 @@ body {
   .booking {
     padding: 20px;
     margin-bottom: 20px;
-    background-color: #f2f2f2;
+    background-color: #d0b9a3da;
     border-radius: 5px;
+    
   }
   
   .booking h2 {
@@ -41,26 +44,33 @@ body {
   .booking p {
     margin: 10px 0;
   }
-  nav {
-    background-color: #acabaa;
-    color: #fff;
-  }
   
-  nav ul {
-    display: flex;
-    justify-content: center;
-    list-style-type: none;
-    margin: 10px;
-    padding: 10px;
-    margin-bottom: 30px;
-    margin-top: auto;
-
-  }
-  
-  nav ul li a {
+  button[type="submit"] {
     display: block;
-    padding: 10px 15px;
-    text-decoration: none;
-    color: #fff;
+    margin: 0 auto;
+    width: 100px;
+    padding: 8px 16px;
+    background-color: #896948cc;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: -18px;
+    margin-top: 50px;
   }
+
+  button[type="submit1"] {
+    display: block;
+    margin: 0 auto;
+    width: 100px;
+    padding: 8px 16px;
+    background-color: #896948cc;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 100px;
+    position: relative;
+    top: -31px;
+    }
   

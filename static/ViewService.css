@@ -1,0 +1,47 @@
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-image: url(/static/pic2.jpeg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+  
+    }
+    
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #d0b9a3da;
+      border-radius: 5px;
+      border-radius: 20px;
+      margin-top: 80px;
+      width: 3000px;
+      
+    }
+    
+    h1 {
+      text-align: center;
+    }
+    
+    .booking-list {
+      margin-top: 20px;
+    }
+    
+    .booking {
+      padding: 20px;
+      margin-bottom: 20px;
+      background-color: #d0b9a3da;
+      border-radius: 5px;
+      
+    }
+    
+    .booking h2 {
+      margin-top: 0;
+    }
+    
+    .booking p {
+      margin: 10px 0;
+    }
+   

@@ -2,7 +2,7 @@
     body {
       font-family: Arial, sans-serif;
       line-height: 1.6;
-      background-image: url(/static/car1.jpeg);
+      background-image: url(/static/pic2.jpeg);
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
@@ -12,7 +12,7 @@
       max-width: 400px;
       margin: 0 auto;
       padding: 40px;
-      background-color: #fff;
+      background-color: #d0b9a3da;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
       margin-top: 150px;
 
@@ -43,8 +43,8 @@
     .form-group button {
       width: 100%;
       padding: 10px;
-      background-color: #acabaa;       
-      color: #fff;
+      background-color: #896948cc;       
+      color: #1e1c1cf0;
       border: none;
       border-radius: 4px;
       cursor: pointer;
@@ -52,7 +52,7 @@
     }
 
     .form-group button:hover {
-      background-color: #4586a0;
+      background-color: #d0b9a3da;
       width: 100px;
     }
   

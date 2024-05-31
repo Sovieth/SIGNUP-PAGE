@@ -9,10 +9,10 @@ app.config["MONGO_URI"] = "mongodb://localhost:27017/Customer"
 mongo = PyMongo(app)
 db = mongo.db
 
-@app.route('/') 
-def index(): 
+@app.route("/", methods=["POST", "GET"])
+def landing(): 
     # Display the landing page
-    return render_template('landing.html') 
+    return render_template("landing.html") 
 
 # Signup page
 @app.route("/signup", methods=["POST", "GET"])
@@ -68,7 +68,6 @@ def login():
             return "Invalid credentials"
     return render_template("login.html")
 
-# LoginAdmin
 @app.route("/LoginAdmin", methods=["GET", "POST"])
 def LoginAdmin():
     if request.method == "POST":
@@ -78,40 +77,60 @@ def LoginAdmin():
         # Fetch user from the database
         user = db.Admin.find_one({"email": email})
         if user and user["password"] == password:
-            return redirect(url_for("get_AddService"))
+            # If the credentials are valid, redirect to the services route
+           return render_template ("AddService.html")
         else:
-            return "Invalid credentials"
-    return render_template("LoginAdmin.html")
-#Services
+            # If the credentials are invalid, render the LoginAdmin.html template with an error message
+            return render_template("LoginAdmin.html", error="Invalid credentials")
+    else:
+        # Render the LoginAdmin.html template when the route is accessed via GET
+        return render_template("LoginAdmin.html")
+
 @app.route("/services", methods=["GET"])
-def get_AddService():
-    service = db.services.find()
-    return render_template("AddService.html", service=service)
+def get_services():
+    services = list(db.services.find())
+    return render_template("ViewServices.html", services=services)
+
+
 
 #Add Service
 @app.route('/AddService', methods=['POST'])
 def AddService():
+  if request.method== 'POST':
     category = request.form['category']
     price = request.form['price']
     description = request.form['description']  # Use lowercase 'description' for consistency
-    image = request.form['image']
+    image = request.files['image']
     
-    service = {'category': category, 'price': price, 'description': description, 'image': image}
-    
-    try:
-        db.services.insert_one(service)
+    service = {'category': category, 'price': price, 'description': description, 'image': image.filename}
+    db.services.insert_one(service)
+
+    if("form submission success"):
+            service = db.services.find(service)
+            return redirect(url_for('get_services'))
         # If insertion is successful, render the landing page
-        return render_template("landing.html", service = service)
-    except Exception as e:
-        # If insertion fails, print the error and return an error message
-        print(f"Error inserting service: {e}")
-        return 'Form submission failed', 500
+    return render_template("ViewServices.html", service = service)
+
+  else:
+      
+      if ('form submission failed'):
+          return 'form unsuccessful'
+      
+      return ("Sucecess")
+    
     
    
 
 # Add booking
 @app.route("/booking", methods=["GET"])
 def get_booking():
+    booking = list(db.Bookings.find())
+    return render_template("booking.html", booking=booking)
+
+
+# Add booking
+@app.route("/ViewServices", methods=["GET"])
+def get_ViewServices():
     booking = list(db.Bookings.find())
     return render_template("booking.html", booking=booking)
 
@@ -193,6 +212,20 @@ def delete_booking():
             
     return render_template('Mybookings.html', bookings=Booking)
 
+
+@app.route('/delete_service', methods=['POST'])
+def delete_service():
+    service_id = request.form.get('id')
+    if service_id:
+        try:
+            db.services.delete_one({"_id": ObjectId(service_id)})
+            return redirect(url_for('get_services'))
+        except:
+            return "Error deleting service", 500
+    else:
+        return "Service ID is missing", 400
+    
+
 @app.route('/Edit_Service', methods=['POST'])
 def edit_booking():
     if request.method == "POST":
@@ -219,9 +252,6 @@ def edit1_booking():
     return render_template('Mybookings.html', bookings=Booking)
 
 
-
-
-# add services
 
 
 if __name__ == '__main__':

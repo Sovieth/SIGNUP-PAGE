@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>My Services</title>
+  <link rel="stylesheet" type="text/css" href="/static/ViewService.css">
+</head>
+<body>
+    <div class="container">
+       
+                <h2>View Services</h2>
+        <div class="ViewService-list">
+            {% for service in services %}
+            <div class="ViewService">
+                <h2>{{ service.name }}</h2>
+                <p>category: {{ service.category }}</p>
+                <p>price: {{ service.price}}</p>
+                <p>description: {{ service.description }}</p>
+
+
+                <form action="{{ url_for('delete_service') }}" method="POST">
+                    <input type="hidden" id="id" name="id" value="{{ service._id }}">
+                    <button type="submit">Delete</button>
+                </form>
+
+
+                <form action="/ViewService", method="POST">
+                    <input type="hidden" id="id" name="id" value={{service._id}}>
+                    <input type="hidden" id="categort" name="name" value={{service._id}}>
+                    <input type="hidden" id="price" name="date" value={{service._price}}>
+                    <input type="hidden" id="description" name="time" value={{service._description}}>
+                    <button type="submit">Update</button>
+                </form>
+            </div>
+          
+            {% endfor %}
+            
+        </div>
+    </div>
+    
+    
+</body>
+</html>

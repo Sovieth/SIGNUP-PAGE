@@ -25,9 +25,9 @@
                 </form>
 
 
-                <form action="/ViewService", method="POST">
+                <form action="{{ url_for('edit_service') }}" method="POST">
                     <input type="hidden" id="id" name="id" value={{service._id}}>
-                    <input type="hidden" id="categort" name="name" value={{service._id}}>
+                    <input type="hidden" id="category" name="name" value={{service._catagory}}>
                     <input type="hidden" id="price" name="date" value={{service._price}}>
                     <input type="hidden" id="description" name="time" value={{service._description}}>
                     <button type="submit">Update</button>

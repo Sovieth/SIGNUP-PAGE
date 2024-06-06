@@ -6,7 +6,7 @@
     <title></title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="./static/AddService.css">
+    <link rel="stylesheet" href="/static/UpdateService.css">
 </head>
 <body>
     <div class="container">
@@ -16,10 +16,11 @@
 
         <div class="form">
             <h1>Add Item</h1>
-            <form id="serviceForm" action="/AddService" method="post"enctype="multipart/form-data">
+            <form id="serviceForm" action="/Edit_Service1" method="post"enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="category">Category:</label>
                     <input type="text" id="category" name="category" required><br>
+                    <input type="hidden" id="id" name="id" value={{id}} required>
 
                     <label for="price">Price:</label>
                     <input type="text" id="price" name="price" required><br>

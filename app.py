@@ -1,7 +1,7 @@
 from flask import Flask
 from flask import request
 from flask_pymongo import PyMongo
-from bson import *
+from bson.objectid import ObjectId 
 from flask import render_template, redirect, url_for
 
 app = Flask(__name__, static_url_path='/static')
@@ -68,6 +68,7 @@ def login():
             return "Invalid credentials"
     return render_template("login.html")
 
+# loginAdmin
 @app.route("/LoginAdmin", methods=["GET", "POST"])
 def LoginAdmin():
     if request.method == "POST":
@@ -88,6 +89,7 @@ def LoginAdmin():
 
 @app.route("/services", methods=["GET"])
 def get_services():
+    
     services = list(db.services.find())
     return render_template("ViewServices.html", services=services)
 
@@ -96,30 +98,26 @@ def get_services():
 #Add Service
 @app.route('/AddService', methods=['POST'])
 def AddService():
-  if request.method== 'POST':
-    category = request.form['category']
-    price = request.form['price']
-    description = request.form['description']  # Use lowercase 'description' for consistency
-    image = request.files['image']
-    
-    service = {'category': category, 'price': price, 'description': description, 'image': image.filename}
-    db.services.insert_one(service)
+    if request.method == 'POST':
+        category = request.form['category']
+        price = request.form['price']
+        description = request.form['description']
+        image = request.files['image']
 
-    if("form submission success"):
-            service = db.services.find(service)
-            return redirect(url_for('get_services'))
-        # If insertion is successful, render the landing page
-    return render_template("ViewServices.html", service = service)
+        service = {
+            'category': category,
+            'price': price,
+            'description': description,
+            'image': image.filename
+        }
+        db.services.insert_one(service)
 
-  else:
-      
-      if ('form submission failed'):
-          return 'form unsuccessful'
-      
-      return ("Sucecess")
-    
-    
-   
+        # Redirect to the 'get_services' route after successful form submission
+        return redirect(url_for('get_services'))
+    else:
+        # Return an error message if the request method is not POST
+        return 'Form submission failed'
+  
 
 # Add booking
 @app.route("/booking", methods=["GET"])
@@ -170,20 +168,20 @@ def Mybookings():
 
 # services
 
-@app.route("/family", methods=["GET", "POST"])
-def family():
-    # Code for the family route
-    return render_template ("family.html")
+# @app.route("/family", methods=["GET", "POST"])
+# def family():
+#     # Code for the family route
+#     return render_template ("family.html")
 
-@app.route("/wedding", methods=["GET", "POST"])
-def wedding():
-    # Code for the wedding route
-    return render_template ("Wedding.html")
+# @app.route("/wedding", methods=["GET", "POST"])
+# def wedding():
+#     # Code for the wedding route
+#     return render_template ("Wedding.html")
 
-@app.route("/newborn", methods=["GET", "POST"])
-def newborn():
-    # Code for the newborn route
-    return render_template ("newborn.html")
+# @app.route("/newborn", methods=["GET", "POST"])
+# def newborn():
+#     # Code for the newborn route
+#     return render_template ("newborn.html")
 
 # Booking
 
@@ -225,8 +223,19 @@ def delete_service():
     else:
         return "Service ID is missing", 400
     
+    
+@app.route('/ViewService', methods=['POST'])
+def ViewService():
+    if request.method == "POST":
+        id = request.form["id"]
+        category = request.form["category"]
+        price = request.form["price"]
+        description = request.form["description"]
 
-@app.route('/Edit_Service', methods=['POST'])
+        return render_template('ViewServices.html', id=id,category=category, price=price, description=description)
+    
+
+@app.route('/Edit_Booking', methods=['POST'])
 def edit_booking():
     if request.method == "POST":
         id = request.form["id"]
@@ -234,9 +243,9 @@ def edit_booking():
         date = request.form["date"]
         time = request.form["time"]
 
-        return render_template('EditService.html', id=id,name=name, date=date, time=time)
+        return render_template('EditService.html', id=id, name=name, date=date, time=time)
 
-@app.route('/Edit_Service1', methods=['POST'])
+@app.route('/Edit_Booking1', methods=['POST'])
 def edit1_booking():
     if request.method == "POST":
         id = request.form["id"]
@@ -251,8 +260,74 @@ def edit1_booking():
             
     return render_template('Mybookings.html', bookings=Booking)
 
+  #bokking confirmation
+@app.route("/confirm", methods=["POST"])
+def confirm():
+    if request.method == "POST":
+        date = request.form["date"]
+        time = request.form["time"]
+        service = request.form["service"]
 
+        # Generate a unique booking ID
+        booking_id = db.confirm.count_documents({}) + 1
 
+        # Add the booking details to the database
+        booking = {"booking_id": booking_id, "date": date, "time": time, "service": service
+        }
+
+        db.confirm.insert_one(booking)
+
+        # Render the confirmation template with the booking details
+        return render_template('confirm.html', booking_id=booking_id, date=date, time=time, service=service)
+
+    # Redirect to the booking page if the request method is not POST
+    return redirect(url_for('booking'))
+
+@app.route("/booking")
+def booking():
+    return render_template('booking.html')
+
+@app.route('/Edit_Service', methods=['POST'])
+def edit_service():
+    if request.method == "POST":
+        id = request.form["id"]
+        category = request.form.get("category")
+        price = request.form.get("price")
+        description = request.form.get("description")
+
+        return render_template('UpdateService.html', id=id,category=category, price=price, description=description)
+
+@app.route('/Edit_Service1', methods=['POST'])
+def edit1_service():
+    if request.method == "POST":
+        id = request.form["id"]
+        category = request.form.get("category")
+        price = request.form.get("price")
+        description = request.form.get("description")
+        
+        db.services.update_one({"_id": ObjectId(id)}, {"$set": {"category": category, "price": price, "description": description}})
+    
+        service = []
+
+        for i in db.services.find():
+            service.append(i)
+            
+    return render_template('ViewServices.html', services=service)
+# @app.route('/AddService', methods=['POST'])
+# def AddService2():
+#     if request.method == "POST":
+#         id = request.form.get("id")
+#         category = request.form.get("category")
+#         price = request.form.get("price")
+#         description = request.form.get("description")
+        
+#        # Update the service document in the database
+#     db.services.update_one({"_id": ObjectId(id)}, {"$set": {"category": category, "price": price, "description": description}})
+    
+#     # Fetch the updated services
+#     services = list(db.services.find())
+    
+#     return render_template('ViewServices.html', service=services)
 
 if __name__ == '__main__':
     app.run(debug=True)

@@ -3,6 +3,7 @@ from flask import request
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId 
 from flask import render_template, redirect, url_for
+from flask import request, redirect, url_for, render_template
 
 app = Flask(__name__, static_url_path='/static')
 app.config["MONGO_URI"] = "mongodb://localhost:27017/Customer"
@@ -131,8 +132,6 @@ def get_booking():
 def get_ViewServices():
     booking = list(db.Bookings.find())
     return render_template("booking.html", booking=booking)
-
-from flask import request, redirect, url_for, render_template
 
 @app.route("/booking/add", methods=["POST", "GET"])  
 def add_booking():
@@ -313,21 +312,9 @@ def edit1_service():
             service.append(i)
             
     return render_template('ViewServices.html', services=service)
-# @app.route('/AddService', methods=['POST'])
-# def AddService2():
-#     if request.method == "POST":
-#         id = request.form.get("id")
-#         category = request.form.get("category")
-#         price = request.form.get("price")
-#         description = request.form.get("description")
-        
-#        # Update the service document in the database
-#     db.services.update_one({"_id": ObjectId(id)}, {"$set": {"category": category, "price": price, "description": description}})
-    
-#     # Fetch the updated services
-#     services = list(db.services.find())
-    
-#     return render_template('ViewServices.html', service=services)
 
 if __name__ == '__main__':
     app.run(debug=True)
+    
+    
+    

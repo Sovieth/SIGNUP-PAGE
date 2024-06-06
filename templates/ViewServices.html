@@ -14,6 +14,7 @@
             {% for service in services %}
             <div class="ViewService">
                 <h2>{{ service.name }}</h2>
+                <img src="static/images/{{service.image}}" alt="xsehkweuhdc">
                 <p>category: {{ service.category }}</p>
                 <p>price: {{ service.price}}</p>
                 <p>description: {{ service.description }}</p>
@@ -30,6 +31,7 @@
                     <input type="hidden" id="category" name="name" value={{service._catagory}}>
                     <input type="hidden" id="price" name="date" value={{service._price}}>
                     <input type="hidden" id="description" name="time" value={{service._description}}>
+                    <input type="hidden" name="image" value="{{ service.image }}">
                     <button type="submit1">Update</button>
                 </form>
             </div>

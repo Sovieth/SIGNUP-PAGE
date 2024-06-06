@@ -5,6 +5,8 @@ from bson.objectid import ObjectId
 from flask import render_template, redirect, url_for
 from flask import request, redirect, url_for, render_template
 
+
+
 app = Flask(__name__, static_url_path='/static')
 app.config["MONGO_URI"] = "mongodb://localhost:27017/Customer"
 mongo = PyMongo(app)
@@ -293,6 +295,7 @@ def edit_service():
         category = request.form.get("category")
         price = request.form.get("price")
         description = request.form.get("description")
+        
 
         return render_template('UpdateService.html', id=id,category=category, price=price, description=description)
 
@@ -303,8 +306,9 @@ def edit1_service():
         category = request.form.get("category")
         price = request.form.get("price")
         description = request.form.get("description")
+        image = request.files['image']
         
-        db.services.update_one({"_id": ObjectId(id)}, {"$set": {"category": category, "price": price, "description": description}})
+        db.services.update_one({"_id": ObjectId(id)}, {"$set": {"category": category, "price": price, "description": description,  'image': image.filename}})
     
         service = []
 

@@ -31,20 +31,111 @@
 
       <h2>Add Booking</h2>
       <form action="/booking/add" id="booking-form" method="POST">
-          <label for="name">Name:</label>
-          <input type="text" id="name" name="name" required>
-        
-          <label for="date">Date:</label>
-          <input type="date" id="date" name="date" required>
-        
-          <label for="time">Time:</label>
-          <input type="time" id="time" name="time" required>
-        
-          <label for="description">Description:</label>
-          <input type="text" id="description" name="description" maxlength="30" required>
-        
-          <button type="submit">Add Booking</button>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+      
+        <label for="date">Date:</label>
+        <input type="date" id="date" name="date" required>
+      
+        <label for="time">Time:</label>
+        <input type="time" id="time" name="time" required>
+      
+        <label for="description">Description:</label>
+        <input type="text" id="description" name="description" maxlength="30" required>
+      
+        <button type="submit" onclick="showPopup(); return false;">Add Booking</button>
       </form>
+      
+      <div id="popup" class="confirmation-card" style="display: none;">
+        <i class="confirmation-icon">&#10004;</i>
+        <div class="confirmation-title">Booking Confirmed</div>
+        <div class="confirmation-message">Thank you for your reservation. We look forward to your visit.</div>
+        <button class="btn btn-primary" onclick="closePopup()">Close</button>
+      </div>
+
+
+      <script>
+        function showPopup() {
+          var popup = document.getElementById("popup");
+          popup.style.display = "block";
+        }
+        
+        function closePopup() {
+          var popup = document.getElementById("popup");
+          popup.style.display = "none";
+          window.location.href = "https://example.com"; // Replace with the URL you want to redirect to
+        }
+        
+        // Get references to the table body and the form
+        const tableBody = document.querySelector('#booking-table tbody');
+        const bookingForm = document.getElementById('booking-form');
+        
+        // Array to store the bookings
+        let bookings = [];
+        
+        // Function to render the bookings in the table
+        function renderBookings() {
+          tableBody.innerHTML = '';
+        
+          bookings.forEach((booking, index) => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+              <td>${booking.name}</td>
+              <td>${booking.date}</td>
+              <td>${booking.time}</td>
+              <td>${booking.description}</td>
+              <td>
+                <button onclick="updateBooking(${index})">Update</button>
+                <button onclick="deleteBooking(${index})">Delete</button>
+              </td>
+            `;
+            tableBody.appendChild(row);
+          });
+        }
+        
+        // Function to add a new booking
+        function addBooking(event) {
+          event.preventDefault();
+        
+          const name = document.getElementById('name').value;
+          const date = document.getElementById('date').value;
+          const time = document.getElementById('time').value;
+          const description = document.getElementById('description').value;
+        
+          const newBooking = { name, date, time, description };
+          bookings.push(newBooking);
+          renderBookings();
+        
+          // Clear the input fields
+          bookingForm.reset();
+        }
+        
+        // Function to update a booking
+        function updateBooking(index) {
+          const booking = bookings[index];
+          const name = prompt('Update name:', booking.name);
+          const date = prompt('Update date:', booking.date);
+          const time = prompt('Update time:', booking.time);
+          const description = prompt('Update description:', booking.description);
+        
+          if (name && date && time && description) {
+            bookings[index] = { name, date, time, description };
+            renderBookings();
+          }
+        }
+        
+        // Function to delete a booking
+        function deleteBooking(index) {
+          bookings.splice(index, 1);
+          renderBookings();
+        }
+        
+        // Add event listener for the form submission
+        bookingForm.addEventListener('submit', addBooking);
+        
+        // Render the initial bookings
+        renderBookings();
+      </script>
 
   <script>
     // Get references to the table body and the form

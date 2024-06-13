@@ -107,7 +107,7 @@ h2 {
 .confirmation-title {
   font-size: 24px;
   font-weight: bold;
-  margin-bottom: 10px;
+  margin-bottom: 100px;
 }
 
 .confirmation-message {
@@ -123,11 +123,12 @@ h2 {
   text-decoration: none;
   border-radius: 4px;
   cursor: pointer;
+  width: 50px;
 }
 
 .btn-primary {
   background-color: #4CAF50;
-  color: white;
+  color: rgba(20, 20, 20, 0.942);
 }
 
 .btn-primary:hover {

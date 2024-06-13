@@ -8,11 +8,13 @@
   <link rel="stylesheet" type="text/css" href="/static/confirm.css">
 </head>
 <body>
+  <form action="/confirm" id="booking-form" method="POST">
+
   <div id="popup" class="confirmation-card">
     <i class="confirmation-icon">&#10004;</i>
     <div class="confirmation-title">Booking Confirmed</div>
     <div class="confirmation-message">Thank you for your reservation. We look forward to your visit.</div>
-    <button class="btn btn-primary"></button>
+    <a href="{{ url_for('close') }}" class="btn btn-primary" role="button">Close</a>
     
   </div>
 </body>

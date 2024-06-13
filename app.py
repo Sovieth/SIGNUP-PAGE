@@ -156,14 +156,35 @@ def add_booking():
 
         for i in db.Bookings.find():
             Booking.append(i)
-        return render_template('Mybookings.html', bookings=Booking)
+        return redirect(url_for('confirm'))
     return render_template("booking_form.html")
 
+@app.route("/confirm", methods=["POST", "GET"])
+def confirm():
+    # Mybookings()
+    Booking = []
+
+    for i in db.Bookings.find():
+        Booking.append(i)
+    return render_template('confirm.html', bookings=Booking)
+
+@app.route("/close", methods=["POST", "GET"])
+def close():
+    Booking = []
+    for i in db.Bookings.find():
+        Booking.append(i)
+    return render_template('Mybookings.html', bookings=Booking)
 
 @app.route("/Mybookings", methods=["POST", "GET"])
 def Mybookings():
     bookings = db.Bookings.find()  # Retrieve all documents from the collection
+    if request.method == 'POST':
+          Booking = []
 
+          for i in db.bookings.find():
+            Booking.append(i)
+            print(Booking)
+    
     return render_template("Mybookings.html", booking=bookings)
 
 
@@ -262,27 +283,27 @@ def edit1_booking():
     return render_template('Mybookings.html', bookings=Booking)
 
   #bokking confirmation
-@app.route("/confirm", methods=["POST"])
-def confirm():
-    if request.method == "POST":
-        date = request.form["date"]
-        time = request.form["time"]
-        service = request.form["service"]
+# @app.route("/confirm", methods=["POST"])
+# def confirm():
+#     if request.method == "POST":
+#         date = request.form["date"]
+#         time = request.form["time"]
+#         service = request.form["service"]
 
-        # Generate a unique booking ID
-        booking_id = db.confirm.count_documents({}) + 1
+#         # Generate a unique booking ID
+#         booking_id = db.confirm.count_documents({}) + 1
 
-        # Add the booking details to the database
-        booking = {"booking_id": booking_id, "date": date, "time": time, "service": service
-        }
+#         # Add the booking details to the database
+#         booking = {"booking_id": booking_id, "date": date, "time": time, "service": service
+#         }
 
-        db.confirm.insert_one(booking)
+#         db.confirm.insert_one(booking)
 
-        # Render the confirmation template with the booking details
-        return render_template('confirm.html', booking_id=booking_id, date=date, time=time, service=service)
+#         # Render the confirmation template with the booking details
+#         return render_template('confirm.html', booking_id=booking_id, date=date, time=time, service=service)
 
-    # Redirect to the booking page if the request method is not POST
-    return redirect(url_for('booking'))
+#     # Redirect to the booking page if the request method is not POST
+#     return redirect(url_for('booking'))
 
 @app.route("/booking")
 def booking():

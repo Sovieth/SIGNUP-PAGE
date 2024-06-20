@@ -73,4 +73,11 @@ body {
     position: relative;
     top: -31px;
     }
+
+
+
+    .rating{
+      float: inline-end;
+      margin-top: -50px;
+    }
   

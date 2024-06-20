@@ -14,32 +14,42 @@
 
 <body>
 
-  <div class="menu-container">
-     <div class="overflow-menu">
-      <input type="checkbox" id="menu-toggle" class="hidden">
-      <label for="menu-toggle" class="menu-btn"><span></span></label> 
-      <ul class="menu">
-        <li class="dropdown">
-          <a href="#" class="dropbtn">Login</a>
-          <div class="dropdown-content">
-            <a href="/login">Customer</a>
-            <a href="/LoginAdmin">Photographer</a>
-          </div>
-        </li>
-
-           <!-- Signup -->
-        <li class="dropdown">
-          <a href="#" class="dropbtn">Sign Up</a>
-          <div class="dropdown-content">
-            <a href="/signup">Customer</a>
-            <a href="/SignupAdmin">Photographer</a>
-          </div>
-        </li>
-      </ul>
+  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+          <li class="dropdown"> 
+            <button type="button" class="btn btn-primary">SIGN UP</button>
+            <div class="dropdown-content">
+                <a href="/signup">Customer</a>
+              <a href="/SignupAdmin">Photographer</a>
+            </div>
+            <li class="dropdown">
+              <button type="button" class="btn btn-primary">LOGIN</button>
+              <div class="dropdown-content">
+              <a href="/login">Customer</a>
+              <a href="/LoginAdmin">Photographer</a>
+              </div>
+            </li>
+          </li>
+          <li class="nav-item dropdown">
+            <ul class="dropdown-menu">
+             <a href="/login">Customer</a>
+             <li class="dropdown">
+              <a href="#" class="dropbtn">Sign Up</a>
+              <div class="dropdown-content">
+                <a href="/signup">Customer</a>
+                <a href="/SignupAdmin">Photographer</a>
+              </div>
+            </li>
+              <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
     </div>
-  </div>
-</div>
-
+  </nav>
 
   <script>
     function toggleDropdown() {
@@ -68,7 +78,7 @@
       <h1>Welcome To Azeya
       </h1>
       <p>Pamper yourself with our professional services</p>
-      <a href="#" onclick="goToLandingPage3('Book Now')" class="btn">Book Now</a>
+      <a href="#" onclick="goToLandingPage3('Book Now')" class="btn">Book Now</a>  <a href="#" onclick="goToLandingPage19('Book Now')" class="btn">Daily Reviews</a>
     </div>
   </section>
   

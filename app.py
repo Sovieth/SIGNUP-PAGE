@@ -338,6 +338,43 @@ def edit1_service():
             
     return render_template('ViewServices.html', services=service)
 
+@app.route('/review', methods=['GET', 'POST'])
+def review():
+    if request.method == 'POST':
+        # Get the review data from the request
+        name = request.form['name']
+        review_text = request.form['review_text']
+        rating = request.form['rating']
+        
+        # Save the review data to the MongoDB database
+        review_data = {
+            'name': name,
+            'review_text': review_text,
+            'rating': int(rating)
+        }
+        db.reviews.insert_one(review_data)
+        return redirect(url_for('review_display'))
+    
+    # Render the review template on GET request
+    return render_template('review.html')
+
+@app.route('/review_display12')
+def review_display():
+    reviews = db.reviews.find()
+    return render_template('review.html', display=reviews)
+
+
+
+
+
+
+
+
+
+
+
+
+
 if __name__ == '__main__':
     app.run(debug=True)
     

@@ -197,7 +197,7 @@ body, h1, h2, h3, p, ul, li {
 }
 
 .dropdown-content a:hover {
-  background-color: #d0b9a3da;
+  background-color: #4c6444;
 }
 
 .dropdown:hover .dropdown-content {
@@ -227,7 +227,7 @@ body, h1, h2, h3, p, ul, li {
   display: block;
   width: 80px;
   height: 10px;
-  background-color: #d0b9a3da;
+  background-color: #4c6444;
   margin-bottom: -.5px; /* This value doesn't seem necessary */
   transition: transform 0.3s, opacity 0.3s;
   border-radius: 100%;

@@ -364,18 +364,6 @@ def review_display():
     reviews = db.reviews.find()
     return render_template('review.html', display=reviews)
 
-@app.route('/cancel-service', methods=['POST'])
-def cancel_service():
-    data = request.get_json()
-    service_id = data.get('serviceId')
-
-    # Here, add your logic to cancel the service using service_id
-    # For demonstration purposes, we'll assume it's always successful
-
-    response = {'success': True}
-    return jsonify(response)
-
-
 if __name__ == '__main__':
     app.run(debug=True)
     

@@ -262,7 +262,7 @@ body, h1, h2, h3, p, ul, li {
 
 .menu li a {
   display: block;
-  padding: 10px 20px;
+ 
   color: #333;
   text-decoration: none;
 }
@@ -293,7 +293,7 @@ body, h1, h2, h3, p, ul, li {
 }
 .menu > li {
   position: relative;
-  margin: 0 15px;
+  
 }
 
 .menu .dropbtn {
@@ -316,13 +316,19 @@ body, h1, h2, h3, p, ul, li {
   display: block;
 }
 
-.menu .dropdown-content a {
-  color: #333;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
+
+
+ a:hover {
+
+  color: #0b0e0e;
 }
 
-.menu .dropdown-content a:hover {
+.btn{
+  margin-left: 20px;
+  margin-top: 25px;
+}
+
+.t{
   background-color: #d0b9a3da;
+  height: 80px;
 }

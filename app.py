@@ -4,6 +4,7 @@ from flask_pymongo import PyMongo
 from bson.objectid import ObjectId 
 from flask import render_template, redirect, url_for
 from flask import request, redirect, url_for, render_template
+from flask import Flask, render_template, request, jsonify
 
 
 
@@ -363,16 +364,16 @@ def review_display():
     reviews = db.reviews.find()
     return render_template('review.html', display=reviews)
 
+@app.route('/cancel-service', methods=['POST'])
+def cancel_service():
+    data = request.get_json()
+    service_id = data.get('serviceId')
 
+    # Here, add your logic to cancel the service using service_id
+    # For demonstration purposes, we'll assume it's always successful
 
-
-
-
-
-
-
-
-
+    response = {'success': True}
+    return jsonify(response)
 
 
 if __name__ == '__main__':

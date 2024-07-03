@@ -189,25 +189,6 @@ def Mybookings():
     return render_template("Mybookings.html", booking=bookings)
 
 
-# services
-
-# @app.route("/family", methods=["GET", "POST"])
-# def family():
-#     # Code for the family route
-#     return render_template ("family.html")
-
-# @app.route("/wedding", methods=["GET", "POST"])
-# def wedding():
-#     # Code for the wedding route
-#     return render_template ("Wedding.html")
-
-# @app.route("/newborn", methods=["GET", "POST"])
-# def newborn():
-#     # Code for the newborn route
-#     return render_template ("newborn.html")
-
-# Booking
-
 @app.route("/booking", methods=["POST", "GET"] )
 def getBooking():
      if request.method == 'POST':

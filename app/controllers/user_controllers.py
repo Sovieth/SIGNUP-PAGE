@@ -1,5 +1,7 @@
 # /controllers
 from flask import request, redirect, url_for, render_template, flash
+from ..models.user_model import MyUsers
+
 
 def landing(): 
     # Display the landing page
@@ -14,51 +16,56 @@ def signup():
         email = request.form["email"]
         password = request.form["password"]
 
-
-        # Check if user already exists
-        if user.find_one({"email": email}):
-            return "User already exists!"
-
-        # Adding user to the database
-        user = {"name": name, "surname": surname, "email": email, "password": password}
-        user.insert_one(user)
-        return redirect(url_for('login'))
+        userdata = {"name": name, "surname": surname, "email": email, "password": password}
+        
+        MyUsers.sign_up_user(userdata)
+        return render_template("login.html")
     
      # Render the signup form template
      return render_template('signup.html')
  
-#  SignupAdmin page
+def Adminsignup(): 
 
-def SignupAdmin():
-    if request.method == "POST":
+     if request.method == "POST":
         name = request.form["name"]
         surname = request.form["surname"]
         email = request.form["email"]
         password = request.form["password"]
 
-        # Check if user already exists
-        if user.find_one({"email": email}):
-            return "User already exists!"
-
-        # Adding user to the database
-        user = {"name": name, "surname": surname, "email": email, "password": password}
-        user.insert_one(user)
-        return redirect(url_for('LoginAdmin'))
-    return render_template('SignupAdmin.html')
-
+        userdata = {"name": name, "surname": surname, "email": email, "password": password}
+        
+        MyUsers.Adminsign_up_user(userdata)
+        return render_template("login.html")
+    
+     # Render the signup form template
+     return render_template('Signup.html')
+ 
+ 
 def login():
     if request.method == "POST":
         email = request.form["email"]
         password = request.form["password"]
-
-        # Fetch user from the database
-        user = user.find_one({"email": email})
-        if user and user["password"] == password:
-            return redirect(url_for("get_booking"))
-        else:
-            return "Invalid credentials"
-    return render_template("login.html")
-
-
+        
+        
+        userdata = {"email": email, "password": password}
+        
+        MyUsers.sign_up_user(userdata)
+        return render_template("login.html")
+    
+     # Render the signup form template
+    return render_template('login.html')
  
-
+def LoginAdmin():
+    if request.method == "POST":
+        email = request.form["email"]
+        password = request.form["password"]
+        
+        
+        userdata = {"email": email, "password": password}
+        
+        MyUsers.LoginAdmin_user(userdata)
+        MyUsers.r(userdata)
+        return render_template("LoginAdmin.htm")
+    
+     # Render the signup form template
+    return render_template('LoginAdmin.html')

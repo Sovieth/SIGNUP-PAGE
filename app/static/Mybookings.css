@@ -1,0 +1,91 @@
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  background-image: url(/static/pic2.jpeg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+
+  }
+  
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #d0b9a3da;
+    border-radius: 5px;
+    border-radius: 20px;
+    margin-top: 40px;
+    width: 3000px;
+    
+  }
+  
+  h1 {
+    text-align: center;
+  }
+  
+  .booking-list {
+    margin-top: 20px;
+  }
+  
+  .booking {
+    padding: 20px;
+    margin-bottom: 20px;
+    background-color: #d0b9a3da;
+    border-radius: 5px;
+    
+  }
+  
+  .booking h2 {
+    margin-top: 0;
+  }
+  
+  .booking p {
+    margin: 10px 0;
+  }
+  
+  button[type="submit"] {
+    display: block;
+    margin: 0 auto;
+    width: 100px;
+    padding: 8px 16px;
+    background-color: #896948cc;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: -18px;
+    margin-top: 50px;
+  }
+
+  button[type="submit1"] {
+    display: block;
+    margin: 0 auto;
+    width: 100px;
+    padding: 8px 16px;
+    background-color: #896948cc;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 100px;
+    position: relative;
+    top: -31px;
+    }
+
+
+
+    .rating{
+      display: block;
+    margin: 0 auto;
+    width: 100px;
+    padding: 8px 16px;
+    background-color: #896948cc;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 15px;
+    position: relative;
+    top: 31px;
+
+    }
+  

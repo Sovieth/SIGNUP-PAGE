@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cancel Service</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="/static/cancel.css">
+</head>
+<body>
+    <div id="service">
+        <h2>Your Service</h2>
+        <button id="cancelBtn">Cancel Service</button>
+    </div>
+
+    <div id="confirmPopUp" class="popup">
+        <div class="popup-content">
+            <span class="close" id="closeBtn">&times;</span>
+            <p>Are you sure you want to cancel the service?</p>
+            <button id="confirmBtn">Yes, Cancel</button>
+            <button id="dismissBtn">No, Keep</button>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const cancelBtn = document.getElementById('cancelBtn');
+        const confirmPopUp = document.getElementById('confirmPopUp');
+        const closeBtn = document.getElementById('closeBtn');
+        const confirmBtn = document.getElementById('confirmBtn');
+        const dismissBtn = document.getElementById('dismissBtn');
+    
+        cancelBtn.addEventListener('click', () => {
+            confirmPopUp.style.display = 'block';
+        });
+    
+        closeBtn.addEventListener('click', () => {
+            confirmPopUp.style.display = 'none';
+        });
+    
+        dismissBtn.addEventListener('click', () => {
+            confirmPopUp.style.display = 'none';
+        });
+    
+        confirmBtn.addEventListener('click', () => {
+            // Add your AJAX request to cancel the service here
+            fetch('/cancel-service', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ serviceId: 1 }) // Replace with actual service ID
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('Service canceled successfully.');
+                    confirmPopUp.style.display = 'none';
+                } else {
+                    alert('Failed to cancel service.');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        });
+    
+        window.addEventListener('click', (event) => {
+            if (event.target == confirmPopUp) {
+                confirmPopUp.style.display = 'none';
+            }
+        });
+    });
+    
+</script>

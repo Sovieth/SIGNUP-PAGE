@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="stylesheet" href="/static/SignupAdmin.css">
+  <title>Signup Page</title>
+  </head>
+<body>
+
+  <form action="/SignupAdmin" method="POST">
+    <div>
+      <center><h1>SIGN UP</h1></center>
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" required>
+    </div>
+
+    <div>
+      <label for="surname">Surname:</label>
+      <input type="text" id="surname" name="surname" required>
+    </div>
+
+    <div>
+      <label for="email">Email Address:</label>
+      <input type="email" id="email" name="email" required>
+    </div>
+
+    <div>
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" required>
+    </div>
+
+    <div>
+      <label for="confirm-password">Confirm Password:</label>
+      <input type="password" id="confirm-password" name="confirm-password" required>
+    </div>
+
+    <div class="button-container">
+      <button type="submit">Sign Up</button><br>
+      <div class="account-message">
+        <p>If you have an account <a href="/login">click here</a> </p>
+      </div>
+    </div> 
+  </form>
+ <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

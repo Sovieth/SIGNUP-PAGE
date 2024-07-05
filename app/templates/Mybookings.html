@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My Bookings</title>
+  <link rel="stylesheet" type="text/css" href="/static/Mybookings.css">
+</head>
+<body>
+    <div class="container">
+                <h2>My Bookings</h2>
+                <button class="rating" onclick="goToLandingPage20('Rating & Reviews')">Rating & Reviews</button>
+        <div class="booking-list">
+            {% for booking in bookings %}
+            <div class="booking">
+                <h2>{{ booking.name }}</h2>
+                <p>Date: {{ booking.date }}</p>
+                <p>Time: {{ booking.time }}</p>
+                <p>Description: {{ booking.description }}</p>
+                <form action="/delete", method="POST">
+                    <input type="hidden" id="id" name="id" value={{booking._id}}>
+                    <button type="submit">Delete</button>
+                </form>
+                <form action="/Edit_Booking", method="POST">
+                    <input type="hidden" id="id" name="id" value={{booking._id}}>
+                    <input type="hidden" id="name" name="name" value={{booking._name}}>
+                    <input type="hidden" id="date" name="date" value={{booking._date}}>
+                    <input type="hidden" id="time" name="time" value={{booking._time}}>
+                    <button type="submit1">Update</button>
+                </form>
+            </div>
+          
+            {% endfor %}
+            
+        </div>
+    </div>
+
+    <script>
+        function goToLandingPage20( ) {
+            // Replace the URL "/landing-page" with the actual URL or route of the landing page
+           window.location.href = "http://127.0.0.1:5000/review";
+           }
+    </script>
+    
+    <script src="/static/script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,68 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-image: url(/static/sow1.jpeg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+  }
+  
+
+  .confirmation-card {
+    background-color: #d0b9a3da;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .confirmation-icon {
+    font-size: 48px;
+    color: #4CAF50;
+    margin-bottom: 20px;
+  }
+
+  .confirmation-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+
+  .confirmation-message {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 20px;
+  }
+
+  .confirmation-details {
+    margin-top: 20px;
+    text-align: left;
+  }
+
+  .confirmation-details p {
+    margin: 5px 0;
+  }
+
+  .confirmation-details strong {
+    font-weight: bold;
+  }
+  .btn1{
+    width: 30px;
+    padding: 10px;
+    background-color: #896948cc;       
+    color: #0f0c0cf1;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+  }

@@ -18,6 +18,9 @@ def signup():
 
         userdata = {"name": name, "surname": surname, "email": email, "password": password}
         
+        # check if user exists using email
+       
+         
         MyUsers.sign_up_user(userdata)
         return render_template("login.html")
     
@@ -64,8 +67,8 @@ def LoginAdmin():
         userdata = {"email": email, "password": password}
         
         MyUsers.LoginAdmin_user(userdata)
-        MyUsers.r(userdata)
         return render_template("LoginAdmin.htm")
     
      # Render the signup form template
     return render_template('LoginAdmin.html')
+

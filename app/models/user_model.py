@@ -7,6 +7,10 @@ class MyUsers:
         mongo.db.user.insert_one(userdata)
         return str("user data")
     
+    def login_user(userdata):
+        mongo.db.user.insert_one(userdata)
+        return str("user data")
+    
     def Adminsign_up_user(userdata):
         mongo.db.user.insert_one(userdata)
         return str("user data")
@@ -14,3 +18,6 @@ class MyUsers:
     def LoginAdmin_user(userdata):
         mongo.db.user.insert_one(userdata)
         return str("user data")
+    
+    def login_user(email, password): 
+        return mongo.db.user.find_one({"email": email, "password": password})

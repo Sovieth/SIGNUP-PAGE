@@ -18,14 +18,11 @@ def add_booking():
             "description": description
         }
 
-# MyBookings.Add_booking()
-# MyBookings.r()
-#     return render_template("Mybooking.htm")
+        MyBookings.Add_booking()
+    return render_template("Mybooking.htm")
     
-# def get_booking():
-#  MyBookings.Add_booking(MyBookings)
-#    return render_template("bookings.html")
-    
-#     return render_template("MyBookings.html", booking=MyBookings)
 
+
+
+    
     

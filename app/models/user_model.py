@@ -12,11 +12,11 @@ class MyUsers:
         return str("user data")
     
     def Adminsign_up_user(userdata):
-        mongo.db.user.insert_one(userdata)
+        mongo.db.User_Admin.insert_one(userdata)
         return str("user data")
     
     def LoginAdmin_user(userdata):
-        mongo.db.user.insert_one(userdata)
+        mongo.db.User_Admin.insert_one(userdata)
         return str("user data")
     
     def login_user(email, password): 

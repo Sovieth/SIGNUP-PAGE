@@ -1,6 +1,4 @@
 from app import create_app
-import os
-from flask import Flask
 
 app = create_app()
 

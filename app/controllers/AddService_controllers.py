@@ -1,6 +1,6 @@
 # /controllers
 from flask import request, redirect, url_for, render_template
-from bson.objectId import ObjectId
+# from bson.objectId import ObjectId
 from ..models.AddService_model import get_service
 
 def AddService():
@@ -30,7 +30,7 @@ def delete_service():
     if request.method == "POST":
        id = request.form["id"]
        print("hjk", id)
-       service_id = ObjectId(id)
+       service_id = id
        get_service.delete_service(service_id)
     return redirect(url_for('service_bp.services'))
 
@@ -42,7 +42,7 @@ def  edit1_service():
         description = request.form.get("description")
         image = request.files['image']
     
-        id = ObjectId(id)
+        
         
         service = {
             'category': category,

@@ -1,6 +1,6 @@
 # /controllers
 from flask import request, redirect, url_for, render_template
-from bson.objectid import ObjectId
+from bson.objectId import ObjectId
 from ..models.AddService_model import get_service
 
 def AddService():

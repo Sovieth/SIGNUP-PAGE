@@ -91,6 +91,7 @@ fastjsonschema @ file:///Users/cbousseau/work/recipes/ci_py311_2/python-fastjson
 filelock @ file:///Users/cbousseau/work/recipes/ci_py311/filelock_1677909105322/work
 flake8 @ file:///Users/cbousseau/work/recipes/ci_py311/flake8_1677931981927/work
 Flask==3.0.3
+Flask==2.0.2
 Flask-Bcrypt==1.0.1
 Flask-JWT-Extended==4.6.0
 Flask-PyMongo==2.3.0

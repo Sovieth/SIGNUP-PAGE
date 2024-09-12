@@ -1,6 +1,7 @@
 # /controllers
 from flask import request, redirect, url_for, render_template, flash
 from ..models.user_model import MyUsers
+import re
 
 def landing(): 
     # Display the landing page
@@ -14,10 +15,18 @@ def signup():
         surname = request.form["surname"]
         email = request.form["email"]
         password = request.form["password"]
+        
+        # Validate email format
+        email_regex = r'^[\w\.-]+@[\w\.-]+\.\w+$'
+        if not re.match(email_regex, email):
+            flash('Invalid email format. Please try again.', 'error')
+            return redirect(url_for('user.signup'))
 
         userdata = {"name": name, "surname": surname, "email": email, "password": password}
+        if not MyUsers.create_user(userdata):
+            flash('Email or username already exists. Please try again with different credentials.', 'error')
+            return redirect(url_for('user.signup'))
          
-        MyUsers.sign_up_user(userdata)
         return render_template("login.html")
     
      # Render the signup form template
@@ -30,14 +39,22 @@ def Adminsignup():
         surname = request.form["surname"]
         email = request.form["email"]
         password = request.form["password"]
+        
+        # Validate email format
+        email_regex = r'^[\w\.-]+@[\w\.-]+\.\w+$'
+        if not re.match(email_regex, email):
+            flash('Invalid email format. Please try again.', 'error')
+            return redirect(url_for('user.signup'))
 
         userdata = {"name": name, "surname": surname, "email": email, "password": password}
+        if not MyUsers.create_user(userdata):
+            flash('Email or username already exists. Please try again with different credentials.', 'error')
+            return redirect(url_for('user.signup'))
         
-        MyUsers.Adminsign_up_user(userdata)
         return render_template("LoginAdmin.html")
     
      # Render the signup form template
-     return render_template('Signup.html')
+     return render_template('SignupAdmin.html')
  
  
 def login():
@@ -47,8 +64,9 @@ def login():
 
         userdata = {"email": email, "password": password}
         
-        MyUsers.sign_up_user(userdata)
-        return render_template("booking.html")
+        MyUsers.login_user(userdata)
+        # return redirect (url_for('user.booking'))
+        return redirect(url_for('booking_bp.add_booking'))
     
      # Render the signup form template
     return render_template('login.html')

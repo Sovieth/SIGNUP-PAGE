@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Booking</title>
+  <title> Edit Booking</title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="/static/booking.css">
@@ -29,20 +29,20 @@
         </tbody>
       </table>
 
-      <h2>Add Booking</h2>
+      <h2>Edit Booking</h2>
       <form action="/Edit_Booking1" id="booking-form" method="POST">
           <label for="name">Name:</label>
-          <input type="text" id="name" name="name">
-          <input type="hidden" id="id" name="id" value={{id}} required>
+          <input type="text" id="name" name="name" value="{{ name }}">
+          <input type="hidden" id="id" name="id" value="{{id}}" required>
 
           <label for="date">Date:</label>
-          <input type="date" id="date" name="date" required>
+          <input type="date" id="date" name="date"value="{{ date }}" required>
         
           <label for="time">Time:</label>
-          <input type="time" id="time" name="time" required>
+          <input type="time" id="time" name="time"value="{{ time }}" required>
         
           <label for="description">Description:</label>
-          <input type="text" id="description" name="description" maxlength="30" required>
+          <input type="text" id="description" name="description"value="{{ description }}" maxlength="30" required>
         
           <button type="submit">Edit Booking</button>
       </form>

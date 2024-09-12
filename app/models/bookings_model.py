@@ -1,17 +1,22 @@
+from bson import ObjectId
 from .. import mongo
-from flask import request, redirect, url_for, render_template 
-from flask import ObjectId
 
-class MyBookings:
- def Add_booking(bookings):
-    return mongo.db.Bookings.insert_one(bookings)
-      
-def get_booking():
-    return mongo.db.Bookings.find()
+class Bookings:
+    def Add_booking(booking):
+        return mongo.db.Bookings.insert_one(booking)
     
- 
- 
- 
+    def display_booking():
+        return mongo.db.Bookings.find()
     
+    def confirm():
+        return mongo.db.Bookings.find()
+    
+    def delete_booking(delete_id):
+        return mongo.db.Bookings.delete_one({"_id": ObjectId(delete_id)})
+    
+    def edit_booking1(id, booking):
+        return mongo.db.Bookings.update_one({"_id": ObjectId(id)}, {"$set": booking})
+
+ 
 
 

@@ -12,8 +12,11 @@ def create_app():
     
     # regiter your routes
     with app.app_context():
-        from .routes import user_routes
+        from .routes import user_routes, AddService_routes, bookings_routes,Reviews_routes
         
-        app.register_blueprint(user_routes.app)
-
+    app.register_blueprint(user_routes.app)
+    app.register_blueprint(bookings_routes.app)
+    app.register_blueprint(AddService_routes.app)
+    app.register_blueprint(Reviews_routes.app)
+    
     return app
